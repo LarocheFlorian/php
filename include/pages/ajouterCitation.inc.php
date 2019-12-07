@@ -13,8 +13,8 @@ if (empty($_POST["citation"])){ ?>
   <select name="nom_enseignant">
   <?php
         foreach ($listeEnseignant as $enseignant) { ?>
-          <option value="<?php echo $enseignant->get ?>"></option>
-        }?>
+          <option value="<?php echo $enseignant->getPerNom(); ?>"></option>
+      <?php  }?>
   </select><br>
   <label> Date Citation : </label> <input type="text" readonly name="date" value="<?php echo date('d/m/Y'); ?>"> <br>
   <label>Citation :</label>
@@ -23,7 +23,7 @@ if (empty($_POST["citation"])){ ?>
 
   </form>
 
-<?php }else {
+<?php } else {
   $string = explode(" ", $_POST["citation"]);
   print_r($string);
 } ?>

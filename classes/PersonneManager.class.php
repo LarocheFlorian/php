@@ -96,14 +96,14 @@ class PersonneManager
   public function addPersonne($personne)
   {
       $req = $this->db->prepare(
-        'insert into personne (per_admin, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd)
-         values (:admin, :nom, :prenom, :tel, :mail, :login, :pwd)');
-        $req->bindValue(':nom', $personne->getPerNom());
-        $req->bindValue(':prenom', $personne->getPerPrenom());
-        $req->bindValue(':tel', $personne->getPerTel());
-        $req->bindValue(':mail', $personne->getPerMail());
-        $req->bindValue(':login', $personne->getPerLogin());
-        $req->bindValue(':pwd', $personne->getPerPwd());
+        'INSERT INTO personne (per_admin, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd)
+         VALUES (:admin, :nom, :prenom, :tel, :mail, :login, :pwd)');
+        $req->bindValue(':nom', $personne->getPerNom(),PDO::PARAM_STR);
+        $req->bindValue(':prenom', $personne->getPerPrenom(),PDO::PARAM_STR);
+        $req->bindValue(':tel', $personne->getPerTel(),PDO::PARAM_STR);
+        $req->bindValue(':mail', $personne->getPerMail(),PDO::PARAM_STR);
+        $req->bindValue(':login', $personne->getPerLogin(),PDO::PARAM_STR);
+        $req->bindValue(':pwd', $personne->getPerPwd(),PDO::PARAM_STR);
         $req->bindValue(':admin', 0);
         $req->execute();
       }

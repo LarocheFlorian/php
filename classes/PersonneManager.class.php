@@ -86,7 +86,7 @@ class PersonneManager
         $req->bindValue(':tel', $personne->getPerTel());
         $req->bindValue(':mail', $personne->getPerMail());
         $req->bindValue(':login', $personne->getPerLogin());
-        $req->bindValue(':pwd', $personne->getPerPWD());
+        $req->bindValue(':pwd', $personne->getPerPwd());
         $req->bindValue(':admin', 0);
         $req->execute();
       }

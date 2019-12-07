@@ -44,7 +44,10 @@ if(!empty($_POST["nom"]) && $_POST['categorie'] == "etudiant") {
 	'per_tel' => $_POST['tel'],
 	'per_mail' => $_POST['mail'],
 	'per_login' => $_POST['login'],
-	'per_pwd' => $_POST['mdp'])));?>
+	'per_pwd' => $_POST['mdp'])));
+	echo $_SESSION['personne'];
+	?>
+
 
 	<h1>Ajouter un étudiant</h1>
 
@@ -67,8 +70,12 @@ if(!empty($_POST["nom"]) && $_POST['categorie'] == "etudiant") {
 <?php }
 
 if(empty($_POST['categorie']) && !empty($_POST['annee'])) {
-	$personneManager->addPersonne(unserialize($_SESSION['personne']));
+  $test = unserialize($_SESSION['personne']);
+	print_r($test);
+
+	$personneManager->addPersonne($test);
 	$id = $personneManager->lastInsertId();
+	/*echo $id;*/
 	$etudiant = new Etudiant(array('per_num' => $id, 'dep_num' => $_POST['dep'],
 	'div_num' => $_POST['annee']));
 

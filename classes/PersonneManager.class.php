@@ -1,0 +1,109 @@
+<?php
+
+
+
+class PersonneManager
+{
+
+  function __construct($db)
+  {
+    $this->db = $db;
+  }
+
+
+  public function getList()
+  {
+
+    $listePersonne = array();
+
+    $sql = 'SELECT per_num, per_nom, per_prenom FROM personne';
+    $req = $this->db->query($sql);
+    $req->execute();
+    while ($personne = $req->fetch(PDO::FETCH_OBJ)){
+        $listePersonne[] = new personne ($personne);
+    }
+    $req->closeCursor();
+    return $listePersonne;
+  }
+
+  public function getPersonne($numero)
+  {
+    $personne = new Personne;
+
+    $sql = 'SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_admin, per_pwd FROM personne';
+    $req = $this->db->query($sql);
+    $req->execute();
+
+    $personne = $req->fetch(PDO::FETCH_OBJ);
+    $getpersonne = new Personne($personne);
+    return $getpersonne;
+  }
+
+
+
+  public function estEtudiant($numero)
+  {
+    $sql = 'SELECT e.per_num, per_nom, per_prenom from personne p, etudiant e where e.per_num=p.per_num and e.per_num = '.$numero ;
+    $req = $this->db->query($sql);
+    if (($personne = $req->fetch(PDO::FETCH_OBJ)))
+    {
+      $req->closeCursor();
+      return 1;
+    }
+    else
+    {
+      $req->closeCursor();
+      return 0;
+    }
+  }
+
+
+  public function isConnexionValide($login,$motDePasse)
+  {
+    $salt = "48@!alsd";
+    $motdepassecrypte = sha1(sha1($motDePasse). $salt);
+    $sql = 'SELECT per_num, per_pwd, per_prenom from personne p where per_login = "'.$login.'" and per_pwd = "'.$motdepassecrypte.'"' ;
+    $req = $this->db->query($sql);
+    if (($personne = $req->fetch(PDO::FETCH_OBJ)))
+    {
+      $req->closeCursor();
+      return 1;
+    }
+    else
+    {
+      $req->closeCursor();
+      return 0;
+    }
+  }
+
+  public function addPersonne($personne)
+  {
+      $req = $this->db->prepare(
+        'insert into personne (per_admin, per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd)
+         values (:admin, :nom, :prenom, :tel, :mail, :login, :pwd)');
+        $req->bindValue(':nom', $personne->getPerNom());
+        $req->bindValue(':prenom', $personne->getPerPrenom());
+        $req->bindValue(':tel', $personne->getPerTel());
+        $req->bindValue(':mail', $personne->getPerMail());
+        $req->bindValue(':login', $personne->getPerLogin());
+        $req->bindValue(':pwd', $personne->getPerPWD());
+        $req->bindValue(':admin', 0);
+        $req->execute();
+      }
+
+      public function lastInsertId() {
+            $req = $this->db->query("select LAST_INSERT_ID()");
+            $req->execute();
+            $lastId = $req->fetchColumn();
+            return $lastId;
+          }
+
+          public function supp($numero)
+          {
+              $req = $this->db->prepare('delete from personne where per_num = :numero');
+            $req->bindValue(':numero', $numero);
+            $req->execute();
+            $req->closeCursor();
+          }
+}
+ ?>

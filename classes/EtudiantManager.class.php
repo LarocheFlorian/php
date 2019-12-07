@@ -18,7 +18,7 @@ class EtudiantManager {
    public function addEtudiant($etudiant)
    {
      $req = $this->db->prepare('INSERT INTO etudiant (per_num, dep_num, div_num) VALUES (:per_num, :dep_num, :div_num)');
-     $req->bindValue(':dep_num',$etudiant->getPerNum(),PDO::PARAM_STR);
+     $req->bindValue(':per_num',$etudiant->getPerNum(),PDO::PARAM_STR);
      $req->bindValue(':dep_num',$etudiant->getDepNum(),PDO::PARAM_STR);
      $req->bindValue(':div_num',$etudiant->getDivNum(),PDO::PARAM_STR);
      $retour=$req->execute();

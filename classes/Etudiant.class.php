@@ -15,9 +15,8 @@ class Etudiant extends Personne{
    foreach ($donnees as $attribut => $valeur){
      switch ($attribut){
        case 'per_num': $this->setPerNum($valeur); break;
-
-         case 'dep_num': $this->setDepNum($valeur); break;
-        case 'div_num': $this->setDivNum($valeur); break;
+       case 'dep_num': $this->setDepNum($valeur); break;
+       case 'div_num': $this->setDivNum($valeur); break;
      }
    }
  }
@@ -38,6 +37,7 @@ class Etudiant extends Personne{
  public function setDivNum($id){
    $this->div_num=$id;
  }
+
  public function getDepNum(){
    return $this->dep_num;
  }

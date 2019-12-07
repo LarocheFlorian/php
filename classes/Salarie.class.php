@@ -3,6 +3,7 @@ class Salarie extends Personne{
  private $per_num;
  private $sal_telprof;
  private $fon_num;
+ private $fon_lib;
 
 
    public function __construct($valeurs = array()){
@@ -17,6 +18,7 @@ class Salarie extends Personne{
                case 'per_num': $this->setPerNum($valeur); break;
                case 'sal_telprof': $this->setTelProf($valeur); break;
                case 'fon_num': $this->setFonNum($valeur); break;
+               case 'fon_libelle': $this->setFonLib($valeur); break;
            }
        }
    }
@@ -43,6 +45,14 @@ class Salarie extends Personne{
 
      public function setFonNum($id){
        $this->fon_num=$id;
+     }
+
+     public function getFonLib(){
+       return $this->fon_libelle;
+     }
+
+     public function setFonLib($id){
+       $this->fon_libelle=$id;
      }
    }
 ?>

@@ -69,8 +69,10 @@ if(!empty($_POST["nom"]) && $_POST['categorie'] == "etudiant") {
 if(empty($_POST['categorie']) && !empty($_POST['annee'])) {
 	$personneManager->addPersonne(unserialize($_SESSION['personne']));
 	$id = $personneManager->lastInsertId();
-	$etudiant = new Etudiant(array('per_num' => $id, 'dep_num' => $_POST['dep'],
-	'div_num' => $_POST['annee']));
+	$etudiant = array('per_num' => $id,
+	'dep_num' => $_POST['dep'],
+	'div_num' => $_POST['annee']);
+	print_r($etudiant);
 
 	$result = $etudiantManager->addEtudiant($etudiant);
 

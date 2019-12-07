@@ -15,17 +15,17 @@ class Salarie extends Personne{
          foreach ($donnees as $attribut => $valeur){
            switch ($attribut){
                case 'per_num': $this->setPerNum($valeur); break;
-               case 'sal_telprof': $this->setTelPro($valeur); break;
-               case 'fon_libelle': $this->setFonNum($valeur); break;
+               case 'sal_telprof': $this->setTelProf($valeur); break;
+               case 'fon_num': $this->setFonNum($valeur); break;
            }
        }
    }
 
-     public function getTelPro(){
+     public function getTelProf(){
        return $this->sal_telprof;
      }
 
-     public function setTelPro($id){
+     public function setTelProf($id){
        $this->sal_telprof=$id;
      }
 

@@ -4,7 +4,6 @@
 $pdo=new Mypdo();
 $personneManager = new PersonneManager($pdo);
 $listeEnseignant = $personneManager->getListEnseignant();
-print_r($listeEnseignant);
 if (empty($_POST["citation"])){ ?>
   <form class="" action="#" method="post">
 

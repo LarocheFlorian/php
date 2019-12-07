@@ -26,14 +26,14 @@ class PersonneManager
     return $listePersonne;
   }
 
-  public getListEnseignant()
+  public function getListEnseignant()
   {
       $listeEnseignant = array();
 
-      $sql = 'select per_nom from personne p
+      $sql = "SELECT per_nom from personne p
               join salarie s on s.per_num = p.per_num
               join fonction f on f.fon_num = s.fon_num
-              where fon_nom = "Enseignant"';
+              where fon_libelle = 'Enseignant'";
       $req = $this->db->query($sql);
       $req->execute();
       while ($enseignant = $req->fetch(PDO::FETCH_OBJ)){

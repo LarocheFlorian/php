@@ -4,7 +4,7 @@
 $pdo=new Mypdo();
 $personneManager = new PersonneManager($pdo);
 $listeEnseignant = $personneManager->getListEnseignant();
-
+print_r($listeEnseignant);
 if (empty($_POST["citation"])){ ?>
   <form class="" action="#" method="post">
 
@@ -13,8 +13,9 @@ if (empty($_POST["citation"])){ ?>
   <select name="nom_enseignant">
   <?php
         foreach ($listeEnseignant as $enseignant) { ?>
-          <option value="<?php echo $enseignant->getPerNom(); ?>"></option>
-      <?php  }?>
+          <option><?php echo $enseignant->getPerNom(); ?></option>
+      <?php
+    }?>
   </select><br>
   <label> Date Citation : </label> <input type="text" readonly name="date" value="<?php echo date('d/m/Y'); ?>"> <br>
   <label>Citation :</label>

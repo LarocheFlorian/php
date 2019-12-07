@@ -1,6 +1,6 @@
 <?php
 class Salarie extends Personne{
- private $per_num
+ private $per_num;
  private $sal_telprof;
  private $fon_num;
 

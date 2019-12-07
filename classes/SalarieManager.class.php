@@ -4,6 +4,7 @@ class SalarieManager {
         public function __construct($db){
             $this->db = $db;
         }
+
    public function detailSalarie($perNum){
      $sql = 'SELECT p.per_prenom, p.per_nom, p.per_mail, p.per_tel, s.sal_telprof, f.fon_libelle FROM PERSONNE p JOIN SALARIE s ON p.per_num = s.per_num JOIN FONCTION f ON f.fon_num = s.fon_num WHERE p.per_num ='.$perNum;
      $requete = $this->db->prepare($sql);

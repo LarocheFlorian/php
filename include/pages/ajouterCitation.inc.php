@@ -1,13 +1,19 @@
 
 <h1>Ajouter une citation</h1>
-<?php if (empty($_POST["citation"])){ ?>
+<?php
+$pdo=new Mypdo();
+$personneManager = new PersonneManager($pdo);
+$listeEnseignant = $personneManager->getListEnseignant();
+
+if (empty($_POST["citation"])){ ?>
   <form class="" action="#" method="post">
 
 
   <label>Enseignant : </label>
   <select name="nom_enseignant">
   <?php
-        foreach ($variable as $key => $value) {
+        foreach ($listeEnseignant as $enseignant) { ?>
+          <option value="<?php echo $enseignant->get ?>"></option>
         }?>
   </select><br>
   <label> Date Citation : </label> <input type="text" readonly name="date" value="<?php echo date('d/m/Y'); ?>"> <br>

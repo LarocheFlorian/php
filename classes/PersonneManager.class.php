@@ -26,6 +26,23 @@ class PersonneManager
     return $listePersonne;
   }
 
+  public getListEnseignant()
+  {
+      $listeEnseignant = array();
+
+      $sql = 'select per_nom from personne p
+              join salarie s on s.per_num = p.per_num
+              join fonction f on f.fon_num = s.fon_num
+              where fon_nom = "Enseignant"';
+      $req = $this->db->query($sql);
+      $req->execute();
+      while ($enseignant = $req->fetch(PDO::FETCH_OBJ)){
+        $listeEnseignant[] = new Personne($enseignant);
+      }
+      return $listeEnseignant;
+      $req->closeCursor();
+  }
+
   public function getPersonne($numero)
   {
     $personne = new Personne;

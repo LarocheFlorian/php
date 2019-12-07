@@ -75,9 +75,16 @@ if(empty($_POST['categorie']) && !empty($_POST['annee'])) {
 
 	$personneManager->addPersonne($test);
 	$id = $personneManager->lastInsertId();
+<<<<<<< HEAD
 	/*echo $id;*/
 	$etudiant = new Etudiant(array('per_num' => $id, 'dep_num' => $_POST['dep'],
 	'div_num' => $_POST['annee']));
+=======
+	$etudiant = array('per_num' => $id,
+	'dep_num' => $_POST['dep'],
+	'div_num' => $_POST['annee']);
+	print_r($etudiant);
+>>>>>>> b71872f7d8755581f9be0961e4355bc735a73405
 
 	$result = $etudiantManager->addEtudiant($etudiant);
 

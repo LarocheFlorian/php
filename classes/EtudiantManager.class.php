@@ -4,6 +4,8 @@ class EtudiantManager {
         public function __construct($db){
             $this->db = $db;
         }
+
+
    public function detailEtu($perNum){
      $sql = 'SELECT p.per_prenom,P.per_nom, p.per_mail, p.per_tel, d.dep_nom, v.vil_nom FROM PERSONNE p JOIN ETUDIANT e ON p.per_num = e.per_num JOIN DEPARTEMENT d ON e.dep_num = d.dep_num JOIN VILLE v ON d.vil_num = v.vil_num  WHERE p.per_num ='.$perNum;
      $requete = $this->db->prepare($sql);

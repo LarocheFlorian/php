@@ -69,14 +69,12 @@ if(!empty($_POST["nom"]) && $_POST['categorie'] == "etudiant") {
 if(empty($_POST['categorie']) && !empty($_POST['annee'])) {
 	$personneManager->addPersonne(unserialize($_SESSION['personne']));
 	$id = $personneManager->lastInsertId();
-	$etudiant = array('per_num' => $id,
-	'dep_num' => $_POST['dep'],
-	'div_num' => $_POST['annee']);
-	print_r($etudiant);
+	$etudiant = new Etudiant(array('per_num' => $id, 'dep_num' => $_POST['dep'],
+	'div_num' => $_POST['annee']));
 
 	$result = $etudiantManager->addEtudiant($etudiant);
 
-	if($result == 0) {
+	if($result) {
 		echo "L'étudiant à bien été ajouté";
 	} else {
 		echo "Erreur";

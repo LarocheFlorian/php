@@ -28,7 +28,8 @@
 					<td><?php echo $personne->getPerPrenom(); ?> </td>
 					<td> <a href="index.php?page=4&numero=<?php echo $personne->getPerNum(); ?>"><img src="./image/erreur.png" alt=""> </a></td>
 				</tr>
-	<?php } ?>
+	<?php }
+	?>
 		</table>
 		<br>
 
@@ -37,12 +38,12 @@
 	} else {
 					if($manager->estEtudiant($_GET["numero"]))
 					{
-						echo "l'etudiant a bien été supprimé ";
+						echo "L'etudiant a bien été supprimé ";
 						$managerEtudiant = new EtudiantManager($db);
 						$manager->supp($_GET["numero"]);
 						$managerEtudiant->supp($_GET["numero"]);
 					}else {
-						echo "le salarié a bien été supprimé ";
+						echo "Le salarié a bien été supprimé ";
 						$managerSalarie = new SalarieManager($db);
 						$manager->supp($_GET["numero"]);
 						$managerSalarie->supp($_GET["numero"]);

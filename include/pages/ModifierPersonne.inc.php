@@ -7,8 +7,6 @@
 	$manager = new PersonneManager($db);
 	$listePersonne = $manager->getList();
 
-	if (empty($_GET["numero"]))
-	{
 	 ?>
 
 		<label>Actuellement <?php echo count($listePersonne) ?> personne(s) sont enregistrées </label><br><br>
@@ -31,11 +29,3 @@
 				</tr>
 	<?php } ?>
 		</table>
-		<br>
-
-
-		<?php
-	} else {
-
-	       }
-	    ?>

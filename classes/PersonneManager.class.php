@@ -45,12 +45,9 @@ class PersonneManager
 
   public function getPersonne($numero)
   {
-    $personne = new Personne;
-
-    $sql = 'SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_admin, per_pwd FROM personne';
+    $sql = 'SELECT per_num, per_nom, per_prenom, per_tel, per_mail, per_login, per_admin, per_pwd FROM personne WHERE per_num ='.$numero;
     $req = $this->db->query($sql);
     $req->execute();
-
     $personne = $req->fetch(PDO::FETCH_OBJ);
     $getpersonne = new Personne($personne);
     return $getpersonne;
@@ -108,19 +105,35 @@ class PersonneManager
         $req->execute();
       }
 
-      public function lastInsertId() {
-            $req = $this->db->query("select LAST_INSERT_ID()");
-            $req->execute();
-            $lastId = $req->fetchColumn();
-            return $lastId;
-          }
+  public function lastInsertId() {
+        $req = $this->db->query("select LAST_INSERT_ID()");
+        $req->execute();
+        $lastId = $req->fetchColumn();
+        return $lastId;
+      }
 
-          public function supp($numero)
-          {
-              $req = $this->db->prepare('delete from personne where per_num = :numero');
-            $req->bindValue(':numero', $numero);
-            $req->execute();
-            $req->closeCursor();
-          }
+  public function supp($numero)
+  {
+    $req = $this->db->prepare('DELETE FROM salarie WHERE per_num = :numero');
+    $req2 = $this->db->prepare('DELETE FROM etudiant WHERE per_num = :numero');
+    $req3 = $this->db->prepare('DELETE FROM vote WHERE per_num = :numero');
+    $req4 = $this->db->prepare('DELETE FROM citation WHERE per_num = :numero');
+    $req5 = $this->db->prepare('DELETE FROM personne WHERE per_num = :numero');
+    $req->bindValue(':numero', $numero);
+    $req->execute();
+    $req->closeCursor();
+    $req2->bindValue(':numero', $numero);
+    $req2->execute();
+    $req2->closeCursor();
+    $req3->bindValue(':numero', $numero);
+    $req3->execute();
+    $req3->closeCursor();
+    $req4->bindValue(':numero', $numero);
+    $req4->execute();
+    $req4->closeCursor();
+    $req5->bindValue(':numero', $numero);
+    $req5->execute();
+    $req5->closeCursor();
+  }
 }
  ?>

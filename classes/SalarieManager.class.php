@@ -27,10 +27,8 @@ class SalarieManager {
 
    public function supp($numero)
    {
-     $sql = 'DELETE FROM salarie WHERE per_num='.$numero;
-     $req = $this->db->query($sql);
-     $req->execute();
-     $req->closeCursor();
+
    }
+
 }
 ?>

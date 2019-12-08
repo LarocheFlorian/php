@@ -79,8 +79,8 @@ if (empty($_GET["numero"]))
                           <td><?php echo $salarie->getPerPrenom();?></td>
                           <td><?php echo $salarie->getPerMail();?></td>
                           <td><?php echo $salarie->getPerTel();?></td>
-                          <td><?php echo $salarie->getTelPro();?></td>
-                          <td><?php echo $salarie->getSalFonction();?></td>
+                          <td><?php echo $salarie->getTelProf();?></td>
+                          <td><?php echo $salarie->getFonLib();?></td>
                       </tr>
                   </table>
           <?php

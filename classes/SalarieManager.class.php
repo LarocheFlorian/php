@@ -18,21 +18,17 @@ class SalarieManager {
    public function addSalarie($salarie)
    {
      $req = $this->db->prepare('INSERT INTO salarie (per_num, sal_telprof, fon_num) VALUES (:per_num, :sal_telprof, :fon_num)');
-     echo "string";
      $req->bindValue(':per_num',$salarie->getPerNum(),PDO::PARAM_STR);
-     $req->bindValue(':sal_telprof',$salarie->getPerTel(),PDO::PARAM_STR);
+     $req->bindValue(':sal_telprof',$salarie->getTelProf(),PDO::PARAM_STR);
      $req->bindValue(':fon_num',$salarie->getFonNum(),PDO::PARAM_STR);
      $retour=$req->execute();
      return $retour;
-
    }
 
    public function supp($numero)
    {
-     $sql = 'delete from salarie where per_num='.$numero;
-     $req = $this->db->query($sql);
-     $req->execute();
-     $req->closeCursor();
+
    }
+
 }
 ?>

@@ -4,9 +4,8 @@
 $db = new Mypdo();
 $manager = new PersonneManager($db);
 $listePersonne = $manager->getList();
-$personne = new Personne();
-
 $personne = $manager->getPersonne($_GET["numero"]);
+
 ?>
 <label> Nom :</label>
  <input type="text" name="per_nom" value=<?php echo $personne->getPerNom();?> > <br>
@@ -19,7 +18,7 @@ $personne = $manager->getPersonne($_GET["numero"]);
  <label>Login :</label>
  <input type="text" name="per_login" value=<?php echo $personne->getPerLogin();?>> <br>
  <label>Mot de passe : </label>
- <input type="password" name="per_pwd" value=<?php echo $personne->getPerPwd();?>> <br>
+ <input type="password" name="per_pwd"> <br>
  <label>Catégorie : </label>
  <?php if ($manager->estEtudiant($_GET["numero"])){ ?>
    <input type="radio" name="choix" value="Etudiant" checked>Etudiant

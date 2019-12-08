@@ -4,6 +4,7 @@ class Etudiant extends Personne{
  private $per_num;
  private $dep_num;
  private $div_num;
+ private $div_lib;
 
 
  public function __construct($valeurs = array()){
@@ -17,6 +18,9 @@ class Etudiant extends Personne{
        case 'per_num': $this->setPerNum($valeur); break;
        case 'dep_num': $this->setDepNum($valeur); break;
        case 'div_num': $this->setDivNum($valeur); break;
+       case 'div_lib': $this->setDivLib($valeur); break;
+       case 'dep_nom'; $this->setDepNom($valeur); break;
+       case 'vil_nom'; $this->setVilNom($valeur); break;
      }
    }
  }
@@ -43,6 +47,27 @@ class Etudiant extends Personne{
  }
  public function setDepNum($id){
    $this->dep_num=$id;
+ }
+
+ public function getDivLib(){
+   return $this->div_libelle;
+ }
+ public function setDivLib($id){
+   $this->div_libelle=$id;
+ }
+
+ public function getDepNom(){
+   return $this->dep_nom;
+ }
+ public function setDepNom($id){
+   $this->dep_nom=$id;
+ }
+
+ public function getVilNom(){
+   return $this->vil_nom;
+ }
+ public function setVilNom($id){
+   $this->vil_nom=$id;
  }
 }
 ?>

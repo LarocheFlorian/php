@@ -39,13 +39,15 @@ if (empty($_POST["nom"]) && empty($_POST["dep"]) && empty($_POST['annee']) && em
 <?php }
 
 if(!empty($_POST["nom"]) && $_POST['categorie'] == "etudiant") {
+	$salt="48@!alsd";
+	$pwd_crypte = sha1(sha1($_POST['mdp']).$salt);
 	$_SESSION['personne'] = serialize(new Personne(array ('per_nom' => $_POST['nom'],
 	'per_prenom' => $_POST['prenom'],
 	'per_tel' => $_POST['tel'],
 	'per_mail' => $_POST['mail'],
 	'per_login' => $_POST['login'],
-	'per_pwd' => $_POST['mdp'])));
-	echo $_SESSION['personne'];
+	'per_pwd' => $pwd_crypte
+)));
 	?>
 
 
@@ -70,10 +72,9 @@ if(!empty($_POST["nom"]) && $_POST['categorie'] == "etudiant") {
 <?php }
 
 if(empty($_POST['categorie']) && !empty($_POST['annee'])) {
-  $test = unserialize($_SESSION['personne']);
-	print_r($test);
+  $personne = unserialize($_SESSION['personne']);
 
-	$personneManager->addPersonne($test);
+	$personneManager->addPersonne($personne);
 	$id = $personneManager->lastInsertId();
 	$etudiant = new Etudiant(array('per_num' => $id, 'dep_num' => $_POST['dep'],
 	'div_num' => $_POST['annee']));
@@ -88,12 +89,15 @@ if(empty($_POST['categorie']) && !empty($_POST['annee'])) {
 }
 
 if (!empty($_POST["nom"]) && $_POST['categorie'] == "salarie") {
+	$salt="48@!alsd";
+	$pwd_crypte = sha1(sha1($_POST['mdp']).$salt);
 	$_SESSION['personne'] = serialize(new Personne(array ('per_nom' => $_POST['nom'],
 	'per_prenom' => $_POST['prenom'],
 	'per_tel' => $_POST['tel'],
 	'per_mail' => $_POST['mail'],
 	'per_login' => $_POST['login'],
-	'per_pwd' => $_POST['mdp'])));?>
+	'per_pwd' => $pwd_crypte
+)));?>
 
 	<h1>Ajouter une salarié</h1>
 
@@ -113,15 +117,16 @@ if (!empty($_POST["nom"]) && $_POST['categorie'] == "salarie") {
 <?php	}
 
 if(empty($_POST['categorie']) && !empty($_POST['tel'])) {
-	$personneManager->addPersonne(unserialize($_SESSION['personne']));
+	$personne = unserialize($_SESSION['personne']);
+	$personneManager->addPersonne($personne);
+
 	$id = $personneManager->lastInsertId();
-	$salarie = new Salarie(array('per_num' => $id,
-																'sal_telprof' => $_POST['tel'],
-																'fon_num' => $_POST['fon']));
+
+	$salarie = new Salarie(array('per_num' => $id, 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
 
 	$result = $salarieManager->addSalarie($salarie);
 
-	if($result == 0) {
+	if($result) {
 		echo "Le salarié à bien été ajouté";
 	} else {
 		echo "Erreur";

@@ -3,6 +3,7 @@ class Salarie extends Personne{
  private $per_num;
  private $sal_telprof;
  private $fon_num;
+ private $fon_lib;
 
 
    public function __construct($valeurs = array()){
@@ -15,17 +16,18 @@ class Salarie extends Personne{
          foreach ($donnees as $attribut => $valeur){
            switch ($attribut){
                case 'per_num': $this->setPerNum($valeur); break;
-               case 'sal_telprof': $this->setTelPro($valeur); break;
-               case 'fon_libelle': $this->setFonNum($valeur); break;
+               case 'sal_telprof': $this->setTelProf($valeur); break;
+               case 'fon_num': $this->setFonNum($valeur); break;
+               case 'fon_libelle': $this->setFonLib($valeur); break;
            }
        }
    }
 
-     public function getTelPro(){
+     public function getTelProf(){
        return $this->sal_telprof;
      }
 
-     public function setTelPro($id){
+     public function setTelProf($id){
        $this->sal_telprof=$id;
      }
 
@@ -43,6 +45,14 @@ class Salarie extends Personne{
 
      public function setFonNum($id){
        $this->fon_num=$id;
+     }
+
+     public function getFonLib(){
+       return $this->fon_libelle;
+     }
+
+     public function setFonLib($id){
+       $this->fon_libelle=$id;
      }
    }
 ?>

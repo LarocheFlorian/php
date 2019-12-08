@@ -28,10 +28,7 @@ class EtudiantManager {
 
    public function supp($numero)
    {
-     $sql = 'delete from etudiant where per_num='.$numero;
-     $req = $this->db->query($sql);
-     $req->execute();
-     $req->closeCursor();
+
    }
 }
 ?>

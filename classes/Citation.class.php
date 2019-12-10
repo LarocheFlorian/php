@@ -2,10 +2,10 @@
 
 class Citation {
 
-      private $cit_nom_enseignant;
       private $cit_libelle;
       private $cit_date;
       private $cit_moyenne;
+      private $per_num;
 
       function __construct($valeurs = array())
       {
@@ -14,17 +14,7 @@ class Citation {
           $this->affecte($valeurs);
         }
       }
-      public function getCitNomEnseignant()
-      {
-          return $this->cit_nom_enseignant;
-      }
 
-      public function setCitNomEnseignant($cit_nom_enseignant)
-      {
-          $this->cit_nom_enseignant = $cit_nom_enseignant;
-
-          return $this;
-      }
 
       public function getCitLibelle()
       {
@@ -62,16 +52,28 @@ class Citation {
           return $this;
       }
 
+      public function setPerNum($per_num)
+      {
+        $this->per_num = $per_num;
+      }
+
+      public function getPerNum()
+      {
+        return $this->per_num;
+      }
+
       public function affecte($donnees)
       {
             foreach ($donnees as $attribut => $valeur)
             {
                 switch ($attribut)
                 {
-                    case 'cit_nom_enseignant': $this->setCitNomEnseignant($valeur); break;
                     case 'cit_libelle': $this->setCitLibelle($valeur); break;
                     case 'cit_date': $this->setCitDate($valeur); break;
                     case 'cit_moyenne': $this->setCitMoyenne($valeur); break;
+                    case 'per_num': $this->setPerNum($valeur); break;
+
+
                 }
             }
         }

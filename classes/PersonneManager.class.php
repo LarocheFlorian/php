@@ -30,7 +30,7 @@ class PersonneManager
   {
       $listeEnseignant = array();
 
-      $sql = "SELECT per_nom from personne p
+      $sql = "SELECT per_nom, p.per_num from personne p
               join salarie s on s.per_num = p.per_num
               join fonction f on f.fon_num = s.fon_num
               where fon_libelle = 'Enseignant'";

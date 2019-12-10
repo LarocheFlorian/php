@@ -1,5 +1,5 @@
 
-<h1>Ajouter une citation</h1>
+
 <?php
 $pdo=new Mypdo();
 $personneManager = new PersonneManager($pdo);
@@ -9,6 +9,8 @@ $citationManager = new CitationManager($pdo);
 
 
 if (empty($_POST["citation"]) && empty($_POST["cit_libelle"])){ ?>
+<h1>Ajouter une citation</h1>
+
       <form class="" action="#" method="post">
 
 
@@ -28,24 +30,27 @@ if (empty($_POST["citation"]) && empty($_POST["cit_libelle"])){ ?>
       </form>
 
 <?php } elseif(!empty($_POST["citation"]) && empty($_POST["cit_libelle"])) {
+
+
             $string = explode(" ", $_POST["citation"]);
             $i = 0;
             $chaineverif = '';
             $erreur = false;
 
             ?>
+            <h1>Ajouter une citation</h1>
             <form class="" action="#" method="post">
 
 
             <label>Enseignant : </label>
-            <select name="cit_nom_enseignant">
+            <select name="per_num">
             <?php
                   foreach ($listeEnseignant as $enseignant) { ?>
-                    <option><?php echo $enseignant->getPerNom(); ?></option>
+                    <option value="<?php echo $enseignant->getPerNum(); ?>"><?php echo $enseignant->getPerNom(); ?></option>
                 <?php
               }?>
             </select><br>
-            <label> Date Citation : </label> <input type="text" readonly name="cit_date" value="<?php echo date('d/m/Y'); ?>"> <br> <?php
+            <label> Date Citation : </label> <input type="text" readonly name="cit_date" value="<?php echo date('Y-m-d'); ?>"> <br> <?php
             while (!empty($string[$i]))
             {
               if ($citationManager->interdit($string[$i]) == 0) {
@@ -72,9 +77,8 @@ if (empty($_POST["citation"]) && empty($_POST["cit_libelle"])){ ?>
       $pdo=new Mypdo();
       $citationManager = new CitationManager($pdo);
       $citation = new Citation($_POST);
-      
-      print_r($citation);
-      $retour=$citationManager->add($citation);
+
+      $retour=$citationManager->add($citation,$_SESSION["Num"]);
       if ($retour != 0)
       {
        ?>

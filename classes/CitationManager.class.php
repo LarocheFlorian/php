@@ -93,21 +93,34 @@ class CitationManager
     return $retour;
   }
 
+
+/* voici la requete elle marche
+
+SELECT CONCAT(p.per_nom, p.per_prenom)
+    as cit_nom_enseignant, c.cit_libelle as cit_libelle,
+    c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne FROM CITATION c
+    LEFT JOIN PERSONNE p ON p.per_num = c.per_num
+    LEFT JOIN VOTE v ON c.cit_num = v.cit_num
+    WHERE c.cit_valide = 1 AND c.cit_date_valide is not null
+    and cit_date = '2018-10-19'
+    and CONCAT(p.per_nom, p.per_prenom) = 'Monediere Thierrry'
+    GROUP BY c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num
+    ORDER BY cit_moyenne DESC*/
   public function search($enseignant, $date , $note)
 
-  $req =$this->db->prepare('select concat(p.per_nom, p.per_prenom);
+  $req =$this->db->prepare('select concat(p.per_nom, p.per_prenom)
     as cit_nom_enseignant, c.cit_libelle as cit_libelle,
     c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne from citation c
     join personne p on p.per_num = c.per_num
     join vote v on c.cit_num = v.cit_num
     where c.cit_valide = 1 and c.cit_date_valide is not null
-    and '.;
+    and '.
 
     if ($date == 1)
     {
-      '1=1 '.;
+      '1=1 '.
     }else {
-      'cit_date = :date '.;
+      'cit_date = :date '.
     }
 
     and
@@ -124,7 +137,7 @@ class CitationManager
     if ($note != 1) {
           'order by cit_moyenne :note ');
     }else {
-      ;
+      '';
     }
 
 

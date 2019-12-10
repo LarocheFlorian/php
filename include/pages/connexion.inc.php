@@ -28,11 +28,11 @@ if (!empty($_SESSION["isConnect"]))
 
 <?php }else if (($_POST["result"] == $_SESSION["numero1"] + $_SESSION["numero2"]) && $manager->isConnexionValide($_POST["per_login"],$_POST["per_pwd"])==1)
 
-{
-  header("refresh:2;url=index.php");?>
+{?>
   <img src="./image/valid.png" alt="">
-  <?php $_SESSION["nomUser"] = $_POST["per_login"];
-        $_SESSION["isConnect"] = TRUE;?>
+  <?php
+        $_SESSION["nomUser"] = $_POST["per_login"];
+        $_SESSION["isConnect"] = true; ?>
   Vous avez bien été connécté ! <br><br>
   Redirection automatique dans 2 secondes.
 
@@ -40,7 +40,8 @@ if (!empty($_SESSION["isConnect"]))
 
 <?php
 }else {
-  header("refresh:2;url=index.php");?>
+  echo $manager->isConnexionValide($_POST["per_login"],$_POST["per_pwd"]);
+  print_r($_SESSION);?>
  erreur de connexion  <br><br>
  Redirection automatique dans 2 secondes.<?php
 } ?>

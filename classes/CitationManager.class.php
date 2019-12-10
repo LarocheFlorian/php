@@ -45,6 +45,16 @@ class CitationManager
     return $retour["nb"];
   }
 
+  public function add($citation)
+  {
+      $req = $this->db->prepare('INSERT INTO citation (cit_nom_enseignant, cit_libelle, cit_date) VALUES (:cit_nom_enseignant, :cit_libelle, :cit_date)');
+      $req->bindValue(':cit_nom_enseignant',$citation->getCitNomEnseignant(),PDO::PARAM_STR);
+      $req->bindValue(':cit_libelle',$citation->getCitLibelle(),PDO::PARAM_STR);
+      $req->bindValue(':cit_date',$citation->getCitDate(),PDO::PARAM_STR);
+      $retour=$req->execute();
+      return $retour;
+  }
+
 }
 
 

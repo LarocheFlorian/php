@@ -55,6 +55,7 @@ class PersonneManager
 
 
 
+
   public function estEtudiant($numero)
   {
     $sql = 'SELECT e.per_num, per_nom, per_prenom from personne p, etudiant e where e.per_num=p.per_num and e.per_num = '.$numero ;
@@ -76,7 +77,7 @@ class PersonneManager
   {
     $salt = "48@!alsd";
     $motdepassecrypte = sha1(sha1($motDePasse). $salt);
-    $sql = 'SELECT per_num, per_pwd, per_prenom from personne p where per_login = "'.$login.'" and per_pwd = "'.$motdepassecrypte.'"' ;
+    $sql = 'select per_num, per_admin, per_prenom from personne p where per_login = "'.$login.'" and per_pwd = "'.$motdepassecrypte.'"' ;
     $req = $this->db->query($sql);
     if (($personne = $req->fetch(PDO::FETCH_OBJ)))
     {

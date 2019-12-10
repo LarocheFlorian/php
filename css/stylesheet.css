@@ -169,3 +169,7 @@ border: thin solid #000000;
 .gras{
 	font-weight: bold;
 }
+
+#rouge{
+	color: crimson;
+}

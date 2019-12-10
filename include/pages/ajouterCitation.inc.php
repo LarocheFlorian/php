@@ -4,6 +4,7 @@
 $pdo=new Mypdo();
 $personneManager = new PersonneManager($pdo);
 $listeEnseignant = $personneManager->getListEnseignant();
+$citationManager = new CitationManager($pdo);
 if (empty($_POST["citation"])){ ?>
   <form class="" action="#" method="post">
 
@@ -26,4 +27,14 @@ if (empty($_POST["citation"])){ ?>
 <?php } else {
   $string = explode(" ", $_POST["citation"]);
   print_r($string);
+  $i = 0;
+  while ($string[$i])
+  {
+    if ($citationManager->interdit($string[$i]) == 0) {
+      echo ' '.$string[$i];
+    }else {
+      echo ' ---';
+    }
+    $i++;
+  }
 } ?>

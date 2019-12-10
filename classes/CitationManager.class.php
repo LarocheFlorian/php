@@ -31,6 +31,20 @@ class CitationManager
 
   }
 
+  public function interdit($mot)
+  {
+    $req = $this->db->prepare('select count(*) as nb from (select mot_interdit ,
+                              match (mot_interdit)
+                              against (:mot)
+                              as pertinence from mot
+                              where match (mot_interdit)
+                              against (:mot))t');
+    $req->bindValue(':mot',$mot,PDO::PARAM_STR);
+    $req->execute();
+    $retour = $req->fetch();
+    return $retour["nb"];
+  }
+
 }
 
 

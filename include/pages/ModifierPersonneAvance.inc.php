@@ -98,7 +98,7 @@
       </form>
 
       <?php
-      echo "était étudiant est maintenant personnel";
+      echo "était étudiant est maintenant salarie";
     }
     if(!$manager->estEtudiant($_GET["numero"]) && $_POST['choix'] == "Personnel"){
       $personne = unserialize($_SESSION['personne']);
@@ -121,6 +121,7 @@
       </form>
 
       <?php
+      echo "était salarie est maintenant salarie";
     }
     if(!$manager->estEtudiant($_GET["numero"]) && $_POST['choix'] == "Etudiant"){
       $personne = unserialize($_SESSION['personne']);
@@ -145,74 +146,57 @@
       </form>
 
       <?php
-      echo "était personnel est maintenant étudiant";
+      echo "était salarié est maintenant étudiant";
     }
   }
 }
 
-if($manager->estEtudiant($_GET["numero"]) && ( isset($_POST['annee']) || isset($_POST['tel']))){
-  if(isset($_POST['annee'])){
-    echo "était étudiant est encore étudiantBIS";
-  } else {
-    echo "était étudiant est maintenant salariéBIS";
-  }
-} else {
-  if(isset($_POST['annee'])){
-    echo "était salarié est maintenant étudiantBIS";
-  } else {
-    echo "était salarié est maintenant salarieBIS";
-  }
+    $code = false;
 
-}
+    if($manager->estEtudiant($_GET["numero"]) && isset($_POST['annee'])){
+      $personne = unserialize($_SESSION['personne']);
+      $manager->update($personne, $_GET["numero"]);
 
+    	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
 
+      $etudiantManager->updateEtudiantPourEtudiant($etudiant);
+      $code = true;
+      echo "Etu reste etu !";
+    }
 
+    if($manager->estEtudiant($_GET["numero"]) && isset($_POST['tel']) && ($code==false)){
+      $personne = unserialize($_SESSION['personne']);
+      $manager->update($personne, $_GET["numero"]);
 
-                  /*CHANGEMENT
-                  if($manager->estEtudiant($_GET["numero"]) && isset($_POST['annee'])){
-                    $personne = unserialize($_SESSION['personne']);
-                    $manager->update($personne, $_GET["numero"]);
+    	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
+      $salarieManager->suppEtu($salarie);
+      $salarieManager->updateEtudiantPourSalarie($salarie);
+      echo "Etu devient salarie";
+      $code = true;
+    }
 
-                  	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
+    if(!$manager->estEtudiant($_GET["numero"]) && isset($_POST['annee']) && ($code==false)){
+      $personne = unserialize($_SESSION['personne']);
+      $manager->update($personne, $_GET["numero"]);
 
-                    $etudiantManager->updateEtudiantPourEtudiant($etudiant);
-                    echo "Etu reste etu !";
-                  }
+    	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
+      $etudiantManager->suppSal($etudiant);
+      $etudiantManager->updateSalariePourEtudiant($etudiant);
+      echo "sal devient etu";
+      $code = true;
+    }
 
-                  if($manager->estEtudiant($_GET["numero"]) && isset($_POST['tel'])){
-                        echo $manager->estEtudiant($_GET["numero"]);
-                        echo $_GET["numero"];
+    if(!$manager->estEtudiant($_GET["numero"]) && isset($_POST['tel']) && ($code==false)){
+      $personne = unserialize($_SESSION['personne']);
+      $manager->update($personne, $_GET["numero"]);
 
-                    $personne = unserialize($_SESSION['personne']);
-                    $manager->update($personne, $_GET["numero"]);
+    	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
 
-                  	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
-                    $salarieManager->suppEtu($salarie);
-                    $salarieManager->updateEtudiantPourSalarie($salarie);
-                    echo "Etu devient salarie";
-                  }
+      $salarieManager->updateSalariePourSalarie($salarie);
+      echo "sal reste sal";
+      $code = true;
+    }
 
-                  if(!$manager->estEtudiant($_GET["numero"]) && isset($_POST['annee'])){
-                    $personne = unserialize($_SESSION['personne']);
-                    $manager->update($personne, $_GET["numero"]);
-
-                  	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
-                    echo "sal devient etu";
-                  }
-
-                  if(!$manager->estEtudiant($_GET["numero"]) && isset($_POST['tel'])){
-                    echo $manager->estEtudiant($_GET["numero"]);
-                    echo $_GET["numero"];
-
-                    $personne = unserialize($_SESSION['personne']);
-                    $manager->update($personne, $_GET["numero"]);
-
-                  	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
-
-                    $salarieManager->updateSalariePourSalarie($salarie);
-                    echo "sal reste sal";
-                  }
-                  */
 
 
   ?>

@@ -34,6 +34,21 @@ class EtudiantManager {
      $retour=$req->execute();
    }
 
+   public function suppSal($etudiant){
+     $req = $this->db->prepare('DELETE FROM `salarie` WHERE `salarie`.`per_num` = :per_num');
+     $req->bindValue(':per_num',$etudiant->getPerNum(),PDO::PARAM_STR);
+     $retour=$req->execute();
+   }
+
+   public function updateSalariePourEtudiant($etudiant){
+     $req = $this->db->prepare('INSERT INTO etudiant (per_num, dep_num, div_num) VALUES (:per_num, :dep_num, :div_num)');
+     $req->bindValue(':per_num',$etudiant->getPerNum(),PDO::PARAM_STR);
+     $req->bindValue(':dep_num',$etudiant->getDepNum(),PDO::PARAM_STR);
+     $req->bindValue(':div_num',$etudiant->getDivNum(),PDO::PARAM_STR);
+     $retour=$req->execute();
+   }
+
+   
    public function supp($numero)
    {
 

@@ -109,39 +109,38 @@ class CitationManager
       public function search($enseignant, $date , $note)
       {
 
-          $req =$this->db->prepare('select concat(p.per_nom, p.per_prenom)
+          $req ='select concat(p.per_nom, p.per_prenom)
             as cit_nom_enseignant, c.cit_libelle as cit_libelle,
             c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne from citation c
             join personne p on p.per_num = c.per_num
             join vote v on c.cit_num = v.cit_num
             where c.cit_valide = 1 and c.cit_date_valide is not null
-            and '.
+            and ';
 
             if ($date == 1)
             {
-              echo "\'1=1 '.";
+              $req .= "1=1 ";
             }else {
-              echo "'cit_date = :date '.";
+              $req .= "cit_date = :date ";
             }
 
-            and
+            $req .= 'and ';
 
             if ($enseignant == 1)
             {
-              echo "'1=1 '.";
+              $req .= "1=1 ";
             }else {
-              echo "'concat(p.per_nom, p.per_prenom) = :enseignant '.";
+              $req .= "concat(p.per_nom, p.per_prenom) = :enseignant ";
             }
 
-            'group by c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num '.
+            $req .= 'group by c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num ';
 
-            if ($note != 1) {
-                echo   "'order by cit_moyenne :note ');";
-            }else {
-                echo   "'';";
+            if ($note != 1)
+            {
+                $req .= "order by cit_moyenne :note ";
             }
 
-
+            echo $req;
             $req->bindValue(':enseignant',$enseignant);
             $req->bindValue(':date',$date);
             $req->bindValue(':numero',$numero);

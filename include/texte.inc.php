@@ -68,7 +68,7 @@ case 7:
 		// inclure ici la page recherche des citations
 		if (!empty($_SESSION["login"]))
 		{
-			include_once("pages/rechercherCitation.inc.php");
+			include_once("pages/RechercherCitation.inc.php");
 		}
 		else
 		{

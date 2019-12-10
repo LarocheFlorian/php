@@ -51,6 +51,7 @@
     'per_login' => $_POST['per_login'],
     'per_pwd' => $pwd_crypte
      )));
+
     if($manager->estEtudiant($_GET["numero"]) && $_POST['choix'] == "Etudiant"){
       $personne = unserialize($_SESSION['personne']);
       ?>
@@ -149,39 +150,69 @@
   }
 }
 
-  if($manager->estEtudiant($_GET["numero"]) && !empty($_POST['annee'])){
-    $personne = unserialize($_SESSION['personne']);
-    $manager->update($personne, $_GET["numero"]);
-
-  	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
-
-    $etudiantManager->updateEtudiantPourEtudiant($etudiant);
-    echo "Modification réussie !";
+if($manager->estEtudiant($_GET["numero"]) && ( isset($_POST['annee']) || isset($_POST['tel']))){
+  if(isset($_POST['annee'])){
+    echo "était étudiant est encore étudiantBIS";
+  } else {
+    echo "était étudiant est maintenant salariéBIS";
+  }
+} else {
+  if(isset($_POST['annee'])){
+    echo "était salarié est maintenant étudiantBIS";
+  } else {
+    echo "était salarié est maintenant salarieBIS";
   }
 
-  if($manager->estEtudiant($_GET["numero"]) && !empty($_POST['tel'])){
-    $personne = unserialize($_SESSION['personne']);
-    $manager->update($personne, $_GET["numero"]);
+}
 
 
-  }
-
-  if(!$manager->estEtudiant($_GET["numero"]) && !empty($_POST['annee'])){
-    $personne = unserialize($_SESSION['personne']);
-    $manager->update($personne, $_GET["numero"]);
 
 
-  }
+                  /*CHANGEMENT
+                  if($manager->estEtudiant($_GET["numero"]) && isset($_POST['annee'])){
+                    $personne = unserialize($_SESSION['personne']);
+                    $manager->update($personne, $_GET["numero"]);
 
-  if(!$manager->estEtudiant($_GET["numero"]) && !empty($_POST['tel'])){
-    $personne = unserialize($_SESSION['personne']);
-    $manager->update($personne, $_GET["numero"]);
+                  	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
 
-  	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
+                    $etudiantManager->updateEtudiantPourEtudiant($etudiant);
+                    echo "Etu reste etu !";
+                  }
 
-    $salarieManager->updateSalariePourSalarie($salarie);
-    echo "Modification réussie !";
-  }
+                  if($manager->estEtudiant($_GET["numero"]) && isset($_POST['tel'])){
+                        echo $manager->estEtudiant($_GET["numero"]);
+                        echo $_GET["numero"];
+
+                    $personne = unserialize($_SESSION['personne']);
+                    $manager->update($personne, $_GET["numero"]);
+
+                  	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
+                    $salarieManager->suppEtu($salarie);
+                    $salarieManager->updateEtudiantPourSalarie($salarie);
+                    echo "Etu devient salarie";
+                  }
+
+                  if(!$manager->estEtudiant($_GET["numero"]) && isset($_POST['annee'])){
+                    $personne = unserialize($_SESSION['personne']);
+                    $manager->update($personne, $_GET["numero"]);
+
+                  	$etudiant = new Etudiant(array('per_num' => $_GET["numero"], 'dep_num' => $_POST['dep'],'div_num' => $_POST['annee']));
+                    echo "sal devient etu";
+                  }
+
+                  if(!$manager->estEtudiant($_GET["numero"]) && isset($_POST['tel'])){
+                    echo $manager->estEtudiant($_GET["numero"]);
+                    echo $_GET["numero"];
+
+                    $personne = unserialize($_SESSION['personne']);
+                    $manager->update($personne, $_GET["numero"]);
+
+                  	$salarie = new Salarie(array('per_num' => $_GET["numero"], 'sal_telprof' => $_POST['tel'], 'fon_num' => $_POST['fon']));
+
+                    $salarieManager->updateSalariePourSalarie($salarie);
+                    echo "sal reste sal";
+                  }
+                  */
 
 
   ?>

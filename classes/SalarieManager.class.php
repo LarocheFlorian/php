@@ -30,9 +30,24 @@ class SalarieManager {
      $req->bindValue(':per_num',$salarie->getPerNum(),PDO::PARAM_STR);
      $req->bindValue(':sal_telprof',$salarie->getTelProf(),PDO::PARAM_STR);
      $req->bindValue(':fon_num',$salarie->getFonNum(),PDO::PARAM_STR);
-     
+
      $retour=$req->execute();
    }
+
+   public function updateEtudiantPourSalarie($salarie){
+     $req = $this->db->prepare('INSERT INTO salarie (per_num, sal_telprof, fon_num) VALUES (:per_num, :sal_telprof, :fon_num)');
+     $req->bindValue(':per_num',$salarie->getPerNum(),PDO::PARAM_STR);
+     $req->bindValue(':sal_telprof',$salarie->getTelProf(),PDO::PARAM_STR);
+     $req->bindValue(':fon_num',$salarie->getFonNum(),PDO::PARAM_STR);
+     $retour=$req->execute();
+   }
+
+   public function suppEtu($salarie){
+     $req = $this->db->prepare('DELETE FROM `etudiant` WHERE `etudiant`.`per_num` = :per_num');
+     $req->bindValue(':per_num',$salarie->getPerNum(),PDO::PARAM_STR);
+     $retour=$req->execute();
+   }
+
    public function supp($numero)
    {
 

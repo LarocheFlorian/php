@@ -7,6 +7,7 @@ $listeEnseignant = $personneManager->getListEnseignant();
 $citationManager = new CitationManager($pdo);
 
 
+
 if (empty($_POST["citation"]) && empty($_POST["cit_libelle"])){ ?>
       <form class="" action="#" method="post">
 
@@ -71,6 +72,7 @@ if (empty($_POST["citation"]) && empty($_POST["cit_libelle"])){ ?>
       $pdo=new Mypdo();
       $citationManager = new CitationManager($pdo);
       $citation = new Citation($_POST);
+      
       print_r($citation);
       $retour=$citationManager->add($citation);
       if ($retour != 0)

@@ -115,6 +115,8 @@ class Personne {
         case 'per_tel': $this->setPerTel($valeur); break;
         case 'per_login': $this->setPerLogin($valeur); break;
         case 'per_pwd': $this->setPerPwd($valeur); break;
+        case 'per_admin': $this->setPerAdmin($valeur); break;
+
       }
     }
    }

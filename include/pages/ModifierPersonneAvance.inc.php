@@ -215,4 +215,4 @@ if($manager->estEtudiant($_GET["numero"]) && ( isset($_POST['annee']) || isset($
                   */
 
 
-  ?>
+  	unset($_SESSION["personne"]);?>

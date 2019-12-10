@@ -118,6 +118,7 @@ if (!empty($_POST["nom"]) && $_POST['categorie'] == "salarie") {
 
 if(empty($_POST['categorie']) && !empty($_POST['tel'])) {
 	$personne = unserialize($_SESSION['personne']);
+
 	$personneManager->addPersonne($personne);
 
 	$id = $personneManager->lastInsertId();
@@ -132,4 +133,5 @@ if(empty($_POST['categorie']) && !empty($_POST['tel'])) {
 		echo "Erreur";
 	}
 }
-?>
+
+	unset($_SESSION["personne"]);?>

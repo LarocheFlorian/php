@@ -54,6 +54,16 @@ class PersonneManager
   }
 
 
+  public function getInfo($login)
+  {
+      $sql = 'select per_login, per_num, per_admin, per_prenom from personne p where per_login = "'.$login.'"';
+      $req = $this->db->query($sql);
+      $req->execute();
+      $preparpersonne = $req->fetch(PDO::FETCH_OBJ);
+      $personne = new Personne($preparpersonne);
+      return $personne;
+
+  }
 
 
   public function estEtudiant($numero)

@@ -1,7 +1,7 @@
 <?php
 
 class Citation {
-
+      private $cit_nom_enseignant;
       private $cit_libelle;
       private $cit_date;
       private $cit_moyenne;
@@ -15,6 +15,14 @@ class Citation {
         }
       }
 
+      public function getCitNomEnseignant(){
+        return $this->cit_nom_enseignant;
+      }
+
+      public function setCitNomEnseignant($cit_nom_enseignant){
+        $this->cit_nom_enseignant=$cit_nom_enseignant;
+        return $this;
+      }
 
       public function getCitLibelle()
       {
@@ -72,6 +80,7 @@ class Citation {
                     case 'cit_date': $this->setCitDate($valeur); break;
                     case 'cit_moyenne': $this->setCitMoyenne($valeur); break;
                     case 'per_num': $this->setPerNum($valeur); break;
+                    case 'cit_nom_enseignant' : $this->setCitNomEnseignant($valeur); break;
 
 
                 }

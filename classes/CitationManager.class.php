@@ -107,6 +107,7 @@ SELECT CONCAT(p.per_nom, p.per_prenom)
     GROUP BY c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num
     ORDER BY cit_moyenne DESC*/
   public function search($enseignant, $date , $note)
+  {
 
   $req =$this->db->prepare('select concat(p.per_nom, p.per_prenom)
     as cit_nom_enseignant, c.cit_libelle as cit_libelle,
@@ -118,26 +119,26 @@ SELECT CONCAT(p.per_nom, p.per_prenom)
 
     if ($date == 1)
     {
-      '1=1 '.
+      echo "'1=1 '.";
     }else {
-      'cit_date = :date '.
+      echo "'cit_date = :date '.";
     }
 
     and
 
     if ($enseignant == 1)
     {
-      '1=1 '.
+      echo "'1=1 '.";
     }else {
-      'concat(p.per_nom, p.per_prenom) = :enseignant '.
+      echo "'concat(p.per_nom, p.per_prenom) = :enseignant '.";
     }
 
     'group by c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num '.
 
     if ($note != 1) {
-          'order by cit_moyenne :note ');
+        echo   "'order by cit_moyenne :note ');";
     }else {
-      '';
+        echo   "'';";
     }
 
 

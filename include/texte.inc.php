@@ -80,7 +80,7 @@ case 8:
 	//inclure ici la page de valider des Citations
 	if (!empty($_SESSION["login"]) && $_SESSION["admin"] == 1)
 	{
-				include("pages/validerCitation.inc.php");
+				include("pages/ValiderCitation.inc.php");
 	}
 
 			 break;
@@ -110,14 +110,14 @@ case 10:
 
 case 11:
 // inclure ici la page lister  ville
-	include("pages/listerVille.inc.php");
+	include("pages/listerVilles.inc.php");
     break;
 
 case 12:
 if (!empty($_SESSION["login"]))
 {
 
-	include_once("pages/modifierVille.inc.php");
+	include_once("pages/ModifierVilles.inc.php");
 }
 else
 {
@@ -129,7 +129,7 @@ case 13:
 if (!empty($_SESSION["login"]) && $_SESSION["admin"] == 1)
 {
 
-			include("pages/supprimerVille.inc.php");
+			include("pages/SupprimerVilles.inc.php");
 		}
 
 		 break;

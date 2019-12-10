@@ -30,6 +30,25 @@ class CitationManager
     return $listeCitations;
 
   }
+  public function getListcitationavalider()
+  {
+
+    $listeCitations = array();
+
+    $sql = 'SELECT cit_num, CONCAT(p.per_nom, p.per_prenom)
+    as cit_nom_enseignant, c.cit_libelle as cit_libelle,
+    c.cit_date as cit_date FROM CITATION c
+    LEFT JOIN PERSONNE p ON p.per_num = c.per_num
+    GROUP BY c.cit_num, p.per_nom, c.cit_libelle, c.cit_date';
+    $req = $this->db->query($sql);
+    $req->execute();
+    while ($citation = $req->fetch(PDO::FETCH_OBJ)){
+      $listeCitations[] = new citation ($citation);
+    }
+        $req->closeCursor();
+    return $listeCitations;
+
+  }
 
   public function interdit($mot)
   {
@@ -54,6 +73,24 @@ class CitationManager
       $req->bindValue(':per_num_etu',$numero,PDO::PARAM_STR);
       $retour=$req->execute();
       return $retour;
+  }
+
+  public function setvalid($numero,$per_numero)
+  {
+    $req = $this->db->prepare('update citation set per_num_valide = :per_numero, cit_valide = 1, cit_date_valide = date(now()) where cit_num = :numero');
+    $req->bindValue(':per_numero',$per_numero,PDO::PARAM_STR);
+    $req->bindValue(':numero',$numero,PDO::PARAM_STR);
+    $retour=$req->execute();
+    return $retour;
+  }
+
+  public function delete($numero)
+  {
+    $req = $this->db->prepare('delete from citation where cit_num= :numero');
+    $req->bindValue(':numero',$numero);
+    $retour=$req->execute();
+    $req->closeCursor();
+    return $retour;
   }
 
 }

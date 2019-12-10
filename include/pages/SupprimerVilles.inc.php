@@ -25,7 +25,7 @@
 				  { ?>
 				    <tr>
 				      <td><?php echo $ville->getVilNom(); ?> </td>
-			        <td> <a href="index.php?page=12&numero=<?php echo $ville->getVilNum(); ?>"><img src="./image/erreur.png" alt=""> </a></td>
+			        <td> <a href="index.php?page=13&numero=<?php echo $ville->getVilNum(); ?>"><img src="./image/erreur.png" alt=""> </a></td>
 				    </tr> <?php
 		 			}
 

@@ -2,7 +2,7 @@
 
 <?php if (empty($_POST["vil_nom"])){ ?>
 
-<form action="index.php?page=7" method="post">
+<form action="index.php?page=10" method="post">
   Nom : <input type="text" name="vil_nom"><br>
   <input type="submit" value="Valider">
 </form>

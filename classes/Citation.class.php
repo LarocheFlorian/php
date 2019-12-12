@@ -48,17 +48,6 @@ class Citation {
 
           return $this;
       }
-      public function getCitNomEnseignant()
-      {
-          return $this->cit_nom_enseignant;
-      }
-
-      public function setCitNomEnseignant($cit_nom_enseignant)
-      {
-          $this->cit_nom_enseignant = $cit_nom_enseignant;
-
-          return $this;
-      }
 
       public function getCitDate()
       {

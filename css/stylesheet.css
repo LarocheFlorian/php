@@ -174,3 +174,8 @@ border: thin solid #000000;
 .rouge{
 	color: crimson;
 }
+
+#imageProfil{
+	width: 4%;
+	height: auto;
+}

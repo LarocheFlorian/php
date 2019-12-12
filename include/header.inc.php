@@ -7,8 +7,8 @@
 		<title>
 		<?php echo $title ?>
 		</title>
-		<link rel="stylesheet" type="text/css" href="css/stylesheet.css?v={random number/string}" />
-
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+?v={random number/string}
 </head>
 	<body>
 	<div id="header">

@@ -2,7 +2,7 @@
 
 
 
-<img src="./image/enseignant/Thierrry Monediere.png">
+<img src="./image/enseignant/Thierrry Monediere.png" id="imageProfil">
 <label>C'est plus fort que toi </label><br>
 <label>Thierrry Monediere</label><br>
 

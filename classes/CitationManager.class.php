@@ -39,6 +39,7 @@ class CitationManager
         as cit_nom_enseignant, c.cit_libelle as cit_libelle,
         c.cit_date as cit_date FROM CITATION c
         LEFT JOIN PERSONNE p ON p.per_num = c.per_num
+        WHERE c.cit_valide = 0
         GROUP BY c.cit_num, p.per_nom, c.cit_libelle, c.cit_date';
         $req = $this->db->query($sql);
         $req->execute();

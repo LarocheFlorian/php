@@ -15,6 +15,8 @@
 			<th>Libellé</th>
 			<th>Date</th>
 			<th>Moyenne des notes</th>
+			<th>Noter</th>
+
 
 		</tr>
 
@@ -28,6 +30,8 @@
 				<td><?php echo $citation->getCitLibelle(); ?> </td>
 				<td><?php echo $citation->getCitDate(); ?> </td>
 				<td><?php echo $citation->getCitMoyenne(); ?> </td>
+				<td> <a href="index.php?page=6&numero=<?php echo $citation->getCitNum(); ?>"><img src="./image/modifier.png" alt=""> </a></td>
+
 			</tr>
 		<?php } ?>
 	</table>

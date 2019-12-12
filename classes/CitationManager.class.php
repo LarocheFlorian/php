@@ -14,7 +14,7 @@ class CitationManager
 
         $listeCitations = array();
 
-        $sql = 'SELECT CONCAT(p.per_nom, p.per_prenom)
+        $sql = 'SELECT c.cit_num, CONCAT(p.per_nom, p.per_prenom)
         as cit_nom_enseignant, c.cit_libelle as cit_libelle,
         c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne FROM CITATION c
         LEFT JOIN PERSONNE p ON p.per_num = c.per_num

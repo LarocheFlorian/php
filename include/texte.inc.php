@@ -142,12 +142,6 @@ case 15 :
 	include_once('pages/deconnexion.inc.php');
 		break;
 
-<<<<<<< HEAD
-		case 17:
-			// inclure ici la page ajouter ville
-			if (!empty($_SESSION["login"]))
-			{
-=======
 case 16:
 	// inclure ici la page modification des personnes
 	if (!empty($_SESSION["login"]) && $_SESSION["admin"] == 1)
@@ -156,12 +150,14 @@ case 16:
 				}
 			 break;
 
->>>>>>> 7c6d56f64f2c7607cc358ecc6196cfe8e3c541c4
+case 17:
+			if (!empty($_SESSION["login"]))
+			{
 
-				include_once("pages/NoterCitation.inc.php");
-			}
+			 include_once("pages/NoterCitation.inc.php");
+		 }
+		 break;
 
-				break;
 
 default : 	include_once('pages/accueil.inc.php');
 }

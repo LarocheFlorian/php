@@ -9,15 +9,9 @@
 
   ?>
 
-<<<<<<< HEAD
 <img src="./image/enseignant/Thierrry Monediere.png">
 <label><?php echo $InfoCitations->getCitLibelle(); ?> </label><br>
 <label><?php echo $InfoCitations->getCitNomEnseignant(); ?></label><br>
-=======
-<img src="./image/enseignant/Thierrry Monediere.png" id="imageProfil">
-<label>C'est plus fort que toi </label><br>
-<label>Thierrry Monediere</label><br>
->>>>>>> 96eb5338a9c2b69eba97fdafc4d335628bb94f9b
 
 
 

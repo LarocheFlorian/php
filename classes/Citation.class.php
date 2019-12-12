@@ -27,16 +27,13 @@ class Citation {
         return $this;
       }
 
-      public function getCitNum(){
-        return $this->cit_num;
-      }
+      p
       public function setCitNum($cit_num)
       {
           $this->cit_num = $cit_num;
 
           return $this;
       }
-
       public function getCitLibelle()
       {
           return $this->cit_libelle;
@@ -45,6 +42,17 @@ class Citation {
       public function setCitLibelle($cit_libelle)
       {
           $this->cit_libelle = $cit_libelle;
+
+          return $this;
+      }
+      public function getCitNomEnseignant()
+      {
+          return $this->cit_nom_enseignant;
+      }
+
+      public function setCitNomEnseignant($cit_nom_enseignant)
+      {
+          $this->cit_nom_enseignant = $cit_nom_enseignant;
 
           return $this;
       }

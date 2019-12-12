@@ -142,7 +142,15 @@ case 15 :
 	include_once('pages/deconnexion.inc.php');
 		break;
 
+		case 17:
+			// inclure ici la page ajouter ville
+			if (!empty($_SESSION["login"]))
+			{
 
+				include_once("pages/NoterCitation.inc.php");
+			}
+
+				break;
 
 default : 	include_once('pages/accueil.inc.php');
 }

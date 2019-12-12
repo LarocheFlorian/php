@@ -30,6 +30,7 @@ class CitationManager
         return $listeCitations;
 
       }
+
       public function getListcitationavalider()
       {
 

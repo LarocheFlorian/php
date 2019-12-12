@@ -9,19 +9,18 @@
 
   ?>
 
-<<<<<<< HEAD
-
+<div id="bloc">
+<div id=gauche>
 <img src="./image/enseignant/Thierrry Monediere.png" id="imageProfil">
-=======
-<img src="./image/enseignant/Thierrry Monediere.png">
->>>>>>> c77ab9fa47de85a8d08f6735a0100b6fb6b3d498
-<label><?php echo $InfoCitations->getCitLibelle(); ?> </label><br>
-<label><?php echo $InfoCitations->getCitNomEnseignant(); ?></label><br>
+</div>
+<div id="droite">
+
+		<p id="citation"><?php echo $InfoCitations->getCitLibelle(); ?> </p><br>
+</div>
+		<p id="para">De <?php echo $InfoCitations->getCitNomEnseignant(); ?> le <?php echo $InfoCitations->getCitDate()?></p><br>
 
 
+	Note : <?php echo $InfoCitations->getCitMoyenne(); ?>/20 <br>
 
-
-
-Note : <?php echo $InfoCitations->getCitMoyenne(); ?>/20 <br>
-
-Vous avez deja noter <br>
+	Vous avez deja noter <br>
+</div>

@@ -3,7 +3,7 @@
 
 	<?php $db = new Mypdo();
 	$manager = new CitationManager($db);
-	$listeCitations = $manager->getListcitationavalider();
+	$listeCitations = $manager->getList();
 
 
 if (empty($_GET["numero"]))

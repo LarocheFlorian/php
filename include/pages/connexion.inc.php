@@ -11,7 +11,7 @@ if (!empty($_SESSION["isConnect"]))
 <?php if (empty($_POST["result"]))
 { ?>
 
-<form action="index.php?page=13" method="post">
+<form action="index.php?page=14" method="post">
 
   <label>Nom d'utilisateur :</label>
   <input type="text" name="per_login"><br>
@@ -48,7 +48,7 @@ if (!empty($_SESSION["isConnect"]))
 
 <?php
 }else {?>
-  <form action="index.php?page=13" method="post">
+  <form action="index.php?page=14" method="post">
 
     <label>Nom d'utilisateur :</label>
     <input type="text" name="per_login"><br>

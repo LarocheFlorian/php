@@ -18,7 +18,7 @@
 
       if (empty($_SESSION["isConnect"]))
       { ?>
-        <label><a href="index.php?page=13">Connexion</a></label>
+        <label><a href="index.php?page=14">Connexion</a></label>
         <?php
       }
       else
@@ -26,7 +26,7 @@
 
         ?>
         utilisateur : <label><?php  echo $_SESSION["login"]; ?>
-        </label> <label><a href="index.php?page=14">Deconnexion</a></label>
+        </label> <label><a href="index.php?page=15">Deconnexion</a></label>
 <?php } ?>
 		</div>
 		<div id="entete">

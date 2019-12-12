@@ -25,7 +25,7 @@
 				  { ?>
 				    <tr>
 				      <td><?php echo $ville->getVilNom(); ?> </td>
-			        <td> <a href="index.php?page=11&numero=<?php echo $ville->getVilNum(); ?>"><img src="./image/modifier.png" alt=""> </a></td>
+			        <td> <a href="index.php?page=12&numero=<?php echo $ville->getVilNum(); ?>"><img src="./image/modifier.png" alt=""> </a></td>
 				    </tr> <?php
 		 			}
 
@@ -33,7 +33,7 @@
 
 				$_SESSION["numero"] = $_GET["numero"];
 				?>
-				<form action="index.php?page=11" method="post">
+				<form action="index.php?page=12" method="post">
 					<label>Nom :</label>
 					 <input type="text" name="vil_nom"><br>
 					<input type="submit" value="Valider">

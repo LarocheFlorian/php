@@ -108,6 +108,7 @@ class CitationManager
         ORDER BY cit_moyenne DESC*/
       public function search($enseignant, $date , $note)
       {
+          $listeCitations = array();
 
           $req ='select concat(p.per_nom, p.per_prenom)
             as cit_nom_enseignant, c.cit_libelle as cit_libelle,
@@ -121,33 +122,54 @@ class CitationManager
             {
               $req .= "1=1 ";
             }else {
-              $req .= "cit_date = :date ";
+              $req .= "cit_date =\"".$date.'"';
             }
 
-            $req .= 'and ';
+            $req .= ' and ';
 
             if ($enseignant == 1)
             {
               $req .= "1=1 ";
             }else {
-              $req .= "concat(p.per_nom, p.per_prenom) = :enseignant ";
+              $req .= "concat(p.per_nom, p.per_prenom) =\"".$enseignant.'"';
             }
 
-            $req .= 'group by c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num ';
+            $req .= ' group by c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num ';
 
             if ($note != 1)
             {
-                $req .= "order by cit_moyenne :note ";
+                $req .= "order by cit_moyenne ".$note;
             }
 
-            echo $req;
-            $req->bindValue(':enseignant',$enseignant);
-            $req->bindValue(':date',$date);
-            $req->bindValue(':numero',$numero);
 
-            $retour=$req->execute();
+            $sql = $this->db->query($req);
+            $sql->execute();
+
+            while ($citation = $sql->fetch(PDO::FETCH_OBJ)){
+              $listeCitations[] = new Citation ($citation);
+            }
+              $sql->closeCursor();
+            return $listeCitations;
+      }
+
+      public function getListEnseignantPN()
+      {
+
+        $listeEnseignant = array();
+
+        $sql = 'SELECT CONCAT(p.per_nom, p.per_prenom)
+        as cit_nom_enseignant FROM personne p
+        join salarie s on s.per_num = p.per_num
+        join fonction f on f.fon_num = s.fon_num
+        where fon_libelle = "Enseignant"';
+        $req = $this->db->query($sql);
+        $req->execute();
+        while ($citation = $req->fetch(PDO::FETCH_OBJ)){
+          $listeEnseignant[] = new citation ($citation);
+        }
             $req->closeCursor();
-            return $retour;
+        return $listeEnseignant;
+
       }
 }
 

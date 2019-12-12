@@ -25,7 +25,7 @@
 				<tr>
 					<td><?php echo $personne->getPerNom(); ?> </td>
 					<td><?php echo $personne->getPerPrenom(); ?> </td>
-					<td> <a href="index.php?page=9&numero=<?php echo $personne->getPerNum(); ?>"><img src="./image/modifier.png" alt=""> </a></td>
+					<td> <a href="index.php?page=16&numero=<?php echo $personne->getPerNum(); ?>"><img src="./image/modifier.png" alt=""> </a></td>
 				</tr>
 	<?php } ?>
 		</table>

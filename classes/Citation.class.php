@@ -17,7 +17,9 @@ class Citation {
           $this->affecte($valeurs);
         }
       }
-
+      public function getCitNum(){
+        return $this->cit_num;
+      }
       public function setCitNum($cit_num)
       {
           $this->cit_num = $cit_num;

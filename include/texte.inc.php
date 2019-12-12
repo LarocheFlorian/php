@@ -142,6 +142,14 @@ case 15 :
 	include_once('pages/deconnexion.inc.php');
 		break;
 
+case 16:
+	// inclure ici la page modification des personnes
+	if (!empty($_SESSION["login"]) && $_SESSION["admin"] == 1)
+	{
+				include("pages/ModifierPersonneAvance.inc.php");
+				}
+			 break;
+
 
 
 default : 	include_once('pages/accueil.inc.php');

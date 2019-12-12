@@ -30,8 +30,7 @@
 				<td><?php echo $citation->getCitLibelle(); ?> </td>
 				<td><?php echo $citation->getCitDate(); ?> </td>
 				<td><?php echo $citation->getCitMoyenne(); ?> </td>
-				<td> <a href="index.php?page=6&numero=<?php echo $citation->getCitNum(); ?>"><img src="./image/modifier.png" alt=""> </a></td>
-
+				<td> <a href="index.php?page=6&numero=<?php echo $citation->getCitNum(); ?>"><img src="./image/modifier.png"> </a></td>
 			</tr>
 		<?php } ?>
 	</table>

@@ -172,6 +172,22 @@ class CitationManager
         return $listeEnseignant;
 
       }
+
+      public function getInfo($numero)
+      {
+
+        $sql = 'SELECT c.cit_num, CONCAT(p.per_nom, p.per_prenom)
+        as cit_nom_enseignant, c.cit_libelle as cit_libelle,
+        c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne FROM CITATION c
+        LEFT JOIN PERSONNE p ON p.per_num = c.per_num
+        LEFT JOIN VOTE v ON c.cit_num = v.cit_num
+        WHERE c.cit_num = '.$numero;
+        $req = $this->db->query($sql);
+        $req->execute();
+        $citation = $req->fetch(PDO::FETCH_OBJ);
+        $infoCitations = new citation ($citation);
+        return $infoCitations;
+      }
 }
 
 

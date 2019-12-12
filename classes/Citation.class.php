@@ -1,12 +1,9 @@
 <?php
 
 class Citation {
-<<<<<<< HEAD
-=======
 
 
       private $cit_num;
->>>>>>> 805265d9cd89a34a2671be46c84f8c6472d9d5f4
       private $cit_nom_enseignant;
       private $cit_libelle;
       private $cit_date;
@@ -21,7 +18,6 @@ class Citation {
         }
       }
 
-<<<<<<< HEAD
       public function getCitNomEnseignant(){
         return $this->cit_nom_enseignant;
       }
@@ -29,19 +25,18 @@ class Citation {
       public function setCitNomEnseignant($cit_nom_enseignant){
         $this->cit_nom_enseignant=$cit_nom_enseignant;
         return $this;
-=======
-      public function getCitNum()
-      {
-          return $this->cit_num;
->>>>>>> 805265d9cd89a34a2671be46c84f8c6472d9d5f4
       }
 
+      public function getCitNum(){
+        return $this->cit_num;
+      }
       public function setCitNum($cit_num)
       {
           $this->cit_num = $cit_num;
 
           return $this;
       }
+
       public function getCitLibelle()
       {
           return $this->cit_libelle;
@@ -109,12 +104,8 @@ class Citation {
                     case 'cit_date': $this->setCitDate($valeur); break;
                     case 'cit_moyenne': $this->setCitMoyenne($valeur); break;
                     case 'per_num': $this->setPerNum($valeur); break;
-<<<<<<< HEAD
-                    case 'cit_nom_enseignant' : $this->setCitNomEnseignant($valeur); break;
-=======
                     case 'cit_nom_enseignant': $this->setCitNomEnseignant($valeur); break;
                     case 'cit_num': $this->setCitNum($valeur); break;
->>>>>>> 805265d9cd89a34a2671be46c84f8c6472d9d5f4
 
 
                 }

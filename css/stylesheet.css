@@ -174,7 +174,39 @@ border: thin solid #000000;
 	color: crimson;
 }
 
+
+/*NoterCitation css*/
 #imageProfil{
-	width: 4%;
+	width: 60%;
 	height: auto;
+	margin-bottom: 1.45em;
+}
+@font-face {
+	font-family: "EcritureManuscrite";
+	font-style: bold;
+	src: url(./police/dearJoe/DJ5CTRIAL.ttf);
+}
+#citation{
+	border: solid;
+	border-width: 1px;
+	padding-bottom: 10%;
+	margin-top: 10%;
+	font-family: "EcritureManuscrite";
+	font-size: 110%;
+}
+#bloc{
+	width: 50%;
+	margin-left: 25%;
+}
+#droite{
+	display: inline-block;
+	width: 69%;
+}
+
+#gauche{
+	display: inline-block;
+	width: 20%;
+}
+#para{
+	margin: 0px;
 }

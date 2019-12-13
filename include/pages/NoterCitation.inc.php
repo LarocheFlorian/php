@@ -9,12 +9,8 @@
 
   ?>
 
-<<<<<<< HEAD
 
 <img src="./image/enseignant/Thierrry Monediere.png" id="imageProfil">
-=======
-<img src="./image/enseignant/Thierrry Monediere.png">
->>>>>>> c77ab9fa47de85a8d08f6735a0100b6fb6b3d498
 <label><?php echo $InfoCitations->getCitLibelle(); ?> </label><br>
 <label><?php echo $InfoCitations->getCitNomEnseignant(); ?></label><br>
 
@@ -22,6 +18,6 @@
 
 
 
-Note : <?php echo $InfoCitations->getCitMoyenne(); ?>/20 <br>
+Note : <?php echo $InfoCitations->getCitMoyenne(); ?>/20 
 
 Vous avez deja noter <br>

@@ -14,7 +14,7 @@ class CitationManager
 
         $listeCitations = array();
 
-        $sql = 'SELECT c.cit_num, CONCAT(p.per_nom, p.per_prenom)
+        $sql = 'SELECT c.cit_num, CONCAT(p.per_nom," ", p.per_prenom)
         as cit_nom_enseignant, c.cit_libelle as cit_libelle,
         c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne FROM CITATION c
         LEFT JOIN PERSONNE p ON p.per_num = c.per_num
@@ -108,11 +108,11 @@ class CitationManager
         and CONCAT(p.per_nom, p.per_prenom) = 'Monediere Thierrry'
         GROUP BY c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num
         ORDER BY cit_moyenne DESC*/
-      public function search($enseignant, $date , $note)
+      public function search($enseignant, $datemin, $datemax , $note)
       {
           $listeCitations = array();
 
-          $req ='select concat(p.per_nom, p.per_prenom)
+          $req ='select concat(p.per_nom," ", p.per_prenom)
             as cit_nom_enseignant, c.cit_libelle as cit_libelle,
             c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne from citation c
             join personne p on p.per_num = c.per_num
@@ -120,11 +120,20 @@ class CitationManager
             where c.cit_valide = 1 and c.cit_date_valide is not null
             and ';
 
-            if ($date == 1)
+            if ($datemin == 1)
             {
               $req .= "1=1 ";
             }else {
-              $req .= "cit_date =\"".$date.'"';
+              $req .= "cit_date >=\"".$datemin.'"';
+            }
+
+            $req .= ' and ';
+
+            if ($datemax == 1)
+            {
+              $req .= "1=1 ";
+            }else {
+              $req .= "cit_date <=\"".$datemax.'"';
             }
 
             $req .= ' and ';
@@ -133,7 +142,7 @@ class CitationManager
             {
               $req .= "1=1 ";
             }else {
-              $req .= "concat(p.per_nom, p.per_prenom) =\"".$enseignant.'"';
+              $req .= "concat(p.per_nom,\" \",p.per_prenom) =\"".$enseignant.'"';
             }
 
             $req .= ' group by c.cit_num, p.per_nom, c.cit_libelle, c.cit_date, c.cit_num ';
@@ -143,7 +152,7 @@ class CitationManager
                 $req .= "order by cit_moyenne ".$note;
             }
 
-
+            echo $req;
             $sql = $this->db->query($req);
             $sql->execute();
 
@@ -159,11 +168,12 @@ class CitationManager
 
         $listeEnseignant = array();
 
-        $sql = 'SELECT CONCAT(p.per_nom, p.per_prenom)
+        $sql = 'SELECT CONCAT(p.per_nom," ", p.per_prenom)
         as cit_nom_enseignant FROM personne p
         join salarie s on s.per_num = p.per_num
         join fonction f on f.fon_num = s.fon_num
         where fon_libelle = "Enseignant"';
+
         $req = $this->db->query($sql);
         $req->execute();
         while ($citation = $req->fetch(PDO::FETCH_OBJ)){
@@ -177,7 +187,7 @@ class CitationManager
       public function getInfo($numero)
       {
 
-        $sql = 'SELECT c.cit_num, CONCAT(p.per_nom, p.per_prenom)
+        $sql = 'SELECT c.cit_num, CONCAT(p.per_nom," ",p.per_prenom)
         as cit_nom_enseignant, c.cit_libelle as cit_libelle,
         c.cit_date as cit_date, AVG(v.vot_valeur) as cit_moyenne FROM CITATION c
         LEFT JOIN PERSONNE p ON p.per_num = c.per_num

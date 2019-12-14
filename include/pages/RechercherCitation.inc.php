@@ -18,8 +18,10 @@ $listeEnseignant = $citationManager->getListEnseignantPN();?>
     <?php
   }?>
 </select>
-<label>Date :</label>
-<input type="date" name="date" value="">
+<label>Date Minimum:</label>
+<input type="date" name="datemin" value="">
+<label>Date Maximum:</label>
+<input type="date" name="datemax" value="">
 <label>Note :</label>
 <select name="note">
   <option></option>
@@ -47,16 +49,24 @@ $manager = new CitationManager($db);
   {
     $note = $_POST["note"];
   }
-  if (empty($_POST["date"]))
+  if (empty($_POST["datemin"]))
   {
-    $date = 1;
+    $datemin = 1;
   }
   else
   {
-    $date = $_POST["date"];
+    $datemin = $_POST["datemin"];
+  }
+  if (empty($_POST["datemax"]))
+  {
+    $datemax = 1;
+  }
+  else
+  {
+    $datemax = $_POST["datemax"];
   }
 
-$listeCitations = $manager->search($nom,$date,$note);
+$listeCitations = $manager->search($nom,$datemin,$datemax,$note);
 ?>
 
 

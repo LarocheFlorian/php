@@ -167,7 +167,7 @@ class PersonneManager
     $req = $this->db->prepare(
       'select cit_num, per_num from vote where cit_num = :citnum AND per_num = :pernum'
     );
-    $req->bindValue(':citnum', $personne->getCitNum(),PDO::PARAM_STR);
+    $req->bindValue(':citnum', $numeroPersonne,PDO::PARAM_STR);
     $req->bindValue(':pernum', $numeroCitation,PDO::PARAM_STR);
     $req->execute();
     if ($req->fetch())

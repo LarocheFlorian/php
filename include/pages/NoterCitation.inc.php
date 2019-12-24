@@ -5,6 +5,8 @@
 
   $db = new Mypdo();
 	$manager = new CitationManager($db);
+	$personnemanager = new PersonneManager($db);
+
 	$InfoCitations = $manager->getInfo($_GET["numero"]);
 
   ?>
@@ -22,5 +24,13 @@
 
 	Note : <?php echo $InfoCitations->getCitMoyenne(); ?>/20 <br>
 
-	Vous avez deja noter <br>
+
+	<?php
+	print_r($_SESSION);
+	if ($personnemanager->aVoter($_GET["numero"],$_SESSION["Num"]))
+	{
+		echo "ca marche"; ?>
+	<?php }else {
+		echo "ca marche pas";
+	} ?>
 </div>

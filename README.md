@@ -1,3 +1,3 @@
 # Readme
 
-Ajout étudiant terminé
+Laroche Florian & Néreis Dugaleix
